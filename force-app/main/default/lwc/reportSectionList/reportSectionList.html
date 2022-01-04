@@ -1,0 +1,28 @@
+<!--
+  @description       : 
+  @author            : Rob Cowell
+  @group             : 
+  @last modified on  : 20/12/2021
+  @last modified by  : Rob Cowell
+-->
+<template>
+    <div data-role="drop-target"
+         ondrop={handleDrop}
+         ondragenter={handleDragEnter}
+         ondragover={handleDragOver}
+         ondragleave={handleDragLeave} >
+    
+        <lightning-tabset variant="scoped">
+            <lightning-tab label={listLabel}>
+                    <template for:each={sectionList} for:item="reportSection">
+                        <c-report-section-item key={reportSection.Id}
+                                            report-section-record={reportSection}
+                                            onitemdrag={handleItemDrag}
+                                            onitemrightclick={handleItemRightClick} >
+                        </c-report-section-item>
+                    </template>
+            </lightning-tab>
+           
+        </lightning-tabset>
+    </div>
+</template>

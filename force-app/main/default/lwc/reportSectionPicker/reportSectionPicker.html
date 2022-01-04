@@ -1,0 +1,66 @@
+<!--
+  @description       :
+  @author            : Rob Cowell
+  @group             :
+  @last modified on  : 20/12/2021
+  @last modified by  : Rob Cowell
+-->
+<template>
+    <div class="slds-m-bottom_small">
+
+        <lightning-layout horizontal-align="center" multiple-rows>
+            <template if:true={reportSectionListAvailable}>
+                <lightning-layout-item flexibility="auto" padding="around-small" size="12" small-device-size="12" medium-device-size="4" large-device-size="4" >
+                    <c-report-section-list section-list={reportSectionListAvailable}
+                        list-label="Available"
+                        onlistitemdrag={handleListItemDrag}
+                        onitemdrop={handleItemDrop}>
+                    </c-report-section-list>
+                </lightning-layout-item>
+            </template>
+
+            <template if:true={reportSectionListSelected}>
+                <lightning-layout-item flexibility="auto" padding="around-small" size="12" small-device-size="12" medium-device-size="4" large-device-size="4"  >
+                    <c-report-section-list section-list={reportSectionListSelected}
+                        list-label="Selected"
+                        onlistitemdrag={handleListItemDrag}
+                        onitemdrop={handleItemDrop}
+                        onlistitemrightclick={handleListItemRightClick} >
+                    </c-report-section-list>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </div>
+
+    <!--modal RTF editor-->
+    <template if:true={openModal}>
+        <div class="slds-modal slds-fade-in-open slds-backdrop">
+          <div class="slds-modal__container">
+            <!------HEADER Section-->
+            <div class="slds-modal__header">
+              <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large" variant="bare-inverse" onclick={closeModal} class="slds-modal__close">
+                <label>Close this window</label>
+            </lightning-button-icon>
+
+            </div>
+            <!------Body Section-->
+            <div class="slds-modal__content slds-p-around_medium">
+                Put Kevin's VF page ({iframeUrl}) here, but needs to be bound to Report Section List for item {editItemId}
+                <br/>
+                
+                <c-modal-rich-text-editor
+                    record-id={editItemId}
+                    iframe-url={iframeUrl} 
+                    onmodalclosed={closeModal} >
+                </c-modal-rich-text-editor>
+                
+            </div>
+            <!------Footer Section-->
+            <div class="slds-modal__footer">
+                <lightning-button icon-name="utility:close" label="close" variant="brand" onclick={closeModal}></lightning-button>
+            </div>
+          </div>
+        </div>
+    </template>
+
+</template>

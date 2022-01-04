@@ -1,0 +1,22 @@
+<!--
+  @description       : 
+  @author            : Rob Cowell
+  @group             : 
+  @last modified on  : 20/12/2021
+  @last modified by  : Rob Cowell
+-->
+<template>
+    <div class="slds-var-m-around_small draggable-card"
+        draggable="true"
+        data-id={reportSectionRecord.Id}
+        ondragstart={itemDragStart}
+        ondragend={itemDragEnd}
+        oncontextmenu={rightClick}
+    >
+        <lightning-card title={reportSectionRecord.Name}>
+            <div class="slds-var-p-horizontal_small" >
+                <lightning-formatted-rich-text value={reportSectionRecord.Section_Content__c}></lightning-formatted-rich-text>
+            </div>
+        </lightning-card>
+    </div>
+</template>
